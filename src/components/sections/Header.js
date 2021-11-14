@@ -6,7 +6,6 @@ import {
 } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
-import { connectWallet, disconnectWallet } from "../../actions";
 import { isMobile } from "react-device-detect";
 import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 
@@ -18,19 +17,6 @@ const HeaderSection = (props) => {
 			props.setCollapsed(!props.collapsed);
 		}
 	};
-
-	const selector = useSelector((state) => state.walletConfig);
-	const dispatch = useDispatch();
-
-	const handleOnClick = (e) => {
-		e.preventDefault();
-		if (selector.wallet.connected) {
-			dispatch(disconnectWallet());
-		} else {
-			dispatch(connectWallet());
-		}
-	};
-
 	return (
 		<Header
 			className="site-layout-background-header"

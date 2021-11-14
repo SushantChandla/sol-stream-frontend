@@ -17,8 +17,9 @@ import { SmileOutlined, SmileTwoTone } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { createStream } from "../../actions";
 import { Link } from 'react-router-dom';
+import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 
-import { connectWallet } from "../../actions";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const { Step } = Steps;
 const { Content } = Layout;
@@ -41,15 +42,16 @@ const CreateStream = (props) => {
 	const selector = useSelector((state) => state.createStream);
 
 	const selector2 = useSelector((state) => state.walletConfig);
+	let wallet = useWallet();
 
 	const connectWalletClick = (e) => {
 		e.preventDefault();
-		dispatch(connectWallet());
 	};
 
 	useEffect(() => {
-		if (selector2.wallet.connected) setCurrentStep(1);
-	}, [selector2]);
+		if (wallet.connected) setCurrentStep(1);
+		else setCurrentStep(0);
+	}, [wallet]);
 
 	useEffect(() => {
 		dispatch({ type: "CLEAR_RESPONSE" });
@@ -101,9 +103,7 @@ But don't worry This will be returned to you whenever you want to cancel stream 
 						Next
 					</Button>
 				) : (
-					<Button type="primary" onClick={connectWalletClick}>
-						Connect wallet and Continue
-					</Button>
+					<WalletMultiButton />
 				)
 			}
 		/>,
@@ -139,7 +139,7 @@ But don't worry This will be returned to you whenever you want to cancel stream 
 							</Option>
 						</Select>
 					</Form.Item>
-				{/* <Row justify="space-around"> */}
+					{/* <Row justify="space-around"> */}
 					<Form.Item
 						label="Rate per second"
 						name="Amount"
@@ -159,8 +159,8 @@ But don't worry This will be returned to you whenever you want to cancel stream 
 					>
 						<Input
 							disabled={true}
-							placeholder={(range!==undefined)?amount *(range[1].unix()-range[0].unix()):0}
-							// onChange={(e) => setAddress(e.target.value)}
+							placeholder={(range !== undefined) ? amount * (range[1].unix() - range[0].unix()) : 0}
+						// onChange={(e) => setAddress(e.target.value)}
 						/>
 					</Form.Item>
 					{/* </Row> */}
@@ -221,9 +221,9 @@ But don't worry This will be returned to you whenever you want to cancel stream 
 				title="Succesfully created stream"
 				subTitle={`Stream ID ${selector.id}`}
 				extra={[
-					<Button type="primary" key="Check_stream" onClick={()=>props.setKey("2")}>
+					<Button type="primary" key="Check_stream" onClick={() => props.setKey("2")}>
 						<Link to="/sending">
-						Check stream
+							Check stream
 						</Link>
 					</Button>,
 					<Button
@@ -271,7 +271,7 @@ But don't worry This will be returned to you whenever you want to cancel stream 
 				</h3>
 			</Col>
 			<div
-			className="create-stream-steps"
+				className="create-stream-steps"
 				style={{
 					width: "100%",
 					height: "80vh",
