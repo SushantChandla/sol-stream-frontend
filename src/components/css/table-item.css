@@ -1,0 +1,255 @@
+body.dark-mode .table-item{
+	background-color: #27262c;
+}
+
+body.dark-mode .item-heading{
+	color: #f1ebfbcc;
+}
+body.dark-mode .item-sub-heading{
+	color: #8b80ae;
+}
+
+body.dark-mode .table-item-body{
+	background-color:#1d1924;
+}
+
+body.dark-mode .ant-card-meta{
+	background-color: #4a4552;
+}
+
+body.dark-mode .ant-card-head-title{
+	color: #9087ad;
+}
+
+body.dark-mode .ant-card-meta-title{
+	color: #9087ad;
+}
+
+body.dark-mode .ant-card-meta-description{
+	color: #f1ebfbcc;
+}
+
+body.dark-mode .ant-card{
+	background-color: #4a4552;
+	border: none
+}
+body.dark-mode .card-earned-number{
+	color: #f1ebfbcc;
+}
+
+body.dark-mode .extra-text-view{
+	color: #9b9b9bc9;
+}
+
+
+body.dark-mode .ant-progress-text{
+	color: #9b9b9bc9;
+}
+
+body.dark-mode .ant-switch{
+	border: #9b9b9bc9 solid 1px;
+}
+
+body.dark-mode .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+	color: #8b80ae;
+}
+
+body.dark-mode .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title{
+	color: #9b9b9bc9;
+}
+
+body.dark-mode .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-description{
+	color: #f1ebfbcc;
+}
+
+
+body.dark-mode .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-description{
+	color: #9b9b9bc9;
+}
+
+body.dark-mode .ant-result-title{
+	color: #f1ebfbcc;
+}
+
+
+body.dark-mode .ant-result-subtitle{
+	color: #9b9b9bc9;
+}
+
+
+body.dark-mode .ant-steps-item-icon > .ant-steps-icon{
+	color: #323136;
+}
+
+body.dark-mode .ant-steps-item-icon {
+	background-color: #f1ebfbcc;
+}
+
+body.dark-mode .refresh-btn-view{
+	background-color: #f1ebfbef;
+	color: #7f73a7;
+}
+
+body.dark-mode .ant-drawer-wrapper-body{
+	background: #27262c;
+}
+
+body.dark-mode .ant-drawer-header{
+	background: #27262c;
+}
+
+body.dark-mode .ant-drawer-title{
+	color: #8b80ae;
+}
+
+
+.refresh-btn-view{
+	background-color: #188fff11;
+}
+
+.table-item {
+	margin: 2px 30px;
+}
+
+.table-item-body {
+	margin: 2px 30px;
+	background-color: #f6f6f6;
+}
+
+.card-custom-bottom {
+	box-shadow: rgba(3, 8, 20, 0.2) 0px 0rem 0.25rem;
+	transition: all 500ms;
+	overflow: hidden;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 0px 0px 20px 20px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.card-custom-bottom:hover {
+	box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+		rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+	transform: translateY(-0.5px) scale(1);
+}
+
+.card-custom-none {
+	box-shadow: rgba(3, 8, 20, 0.2) 0px 0.02rem 0.25rem;
+	transition: all 500ms;
+	overflow: hidden;
+	padding: 10px;
+	cursor: pointer;
+	/* border-radius: 0px 0px 20px 20px; */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.card-custom-none:hover {
+	box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+		rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+	transform: translateY(-0.5px) scale(1);
+}
+
+.card-custom {
+	box-shadow: rgba(3, 8, 20, 0.2) 0px 0rem 0.25rem;
+	transition: all 500ms;
+	overflow: hidden;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 20px 20px 0px 0px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.card-custom:hover {
+	box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+		rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+	transform: translateY(-0.5px) scale(1);
+}
+
+.card-custom-both {
+	box-shadow: rgba(3, 8, 20, 0.2) 0px 0rem 0.25rem;
+	transition: all 500ms;
+	overflow: hidden;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.card-custom-both:hover {
+	box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+		rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+	transform: translateY(-0.5px) scale(1);
+}
+
+.card-custom-extra {
+	box-shadow: rgba(3, 8, 20, 0.2) 0px 0rem 0.25rem;
+	transition: all 500ms;
+	overflow: hidden;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 20px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.ant-card-meta-title {
+	color: #12304b9f;
+	font-weight: 500;
+	font-size: smaller;
+}
+
+.ant-card-head-title {
+	color: #12304bda;
+	font-weight: 500;
+	font-size: small;
+}
+.ant-card-meta-description {
+	color: #12304bda;
+}
+
+.card-earned-number {
+	color: #12304bda;
+	font-weight: 700;
+	font-size: small;
+}
+/* .card{
+	 border-radius: 20px;
+ } */
+
+.item-heading {
+	color: #12304bda;
+	font-weight: 500;
+	font-size: small;
+}
+
+.item-sub-heading {
+	color: rgba(24, 24, 24, 0.747);
+	font-weight: 500;
+	font-size: smaller;
+}
+
+.site-drawer-render-in-current-wrapper {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+
+}
+
+.ant-progress-inner {
+	border: #0000002d solid 1px;
+	background-color: white;
+}
+
+
+.ant-card-meta{
+	background-color: white;
+}
+
+.ant-card{
+	background-color: white;
+}

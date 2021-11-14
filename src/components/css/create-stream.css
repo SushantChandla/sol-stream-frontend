@@ -1,0 +1,87 @@
+body.dark-mode .create-stream-steps{
+	background-color: #08060b;
+}
+
+
+body.dark-mode .page-sub-heading{
+	background: rgba(34, 31, 31, 0.089);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+body.dark-mode .ant-result-content{
+	background: #08060b;
+}
+
+body.dark-mode .ant-form-item-label label{
+	color: #f1ebfbcc;
+}
+
+body.dark-mode input{
+	background: #08060b;
+	color: #f1ebfbcc;
+	opacity:unset;
+}
+
+body.dark-mode .ant-select > .ant-select-selector{
+	background: #08060b;
+	color: #f1ebfbcc;
+}
+
+body.dark-mode .ant-picker-range{
+	background: #08060b;
+	color: #f1ebfbcc;
+}
+
+body.dark-mode .ant-input[disabled]{
+	background: #08060b;
+	color: #f1ebfbcc;
+	opacity:unset;
+}
+
+
+.page-heading {
+	font-weight: 600;
+	font-size: 54px;
+	margin-left: 20px;
+	background: -webkit-linear-gradient(#667de5, #856bcc, #965ab0);
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.page-sub-heading {
+	background: #221f1fa6;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	margin-left: 5px;
+	font-weight: 600;
+	font-size: large;
+}
+
+
+
+.create-stream-steps{
+	background-color: #f6f6f6;
+}
+/* 
+body.light-mode .create-stream-steps{
+		background-color: white;
+} */
+
+
+
+
+
+.site-page-header {
+	padding: 10px;
+}
+
+.steps {
+	-webkit-border-radius: 12px;
+
+	/* Firefox 1-3.6 */
+	-moz-border-radius: 12px;
+
+	/* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+	border-radius: 12px;
+}
