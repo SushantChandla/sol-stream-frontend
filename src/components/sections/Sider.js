@@ -37,7 +37,7 @@ const SiderSection = (props) => {
 				defaultSelectedKeys={[props.keyName]}
 			>
 				<Menu.Item key="2" icon={<SendOutlined />}>
-					<Link to="/sending"> My Streams </Link>
+					<Link to="/"> Sending </Link>
 				</Menu.Item>
 				<Menu.Item key="3" icon={<DownloadOutlined />}>
 					<Link to="/receiving"> Receiving </Link>
@@ -45,7 +45,7 @@ const SiderSection = (props) => {
 				<Menu.Item key="4" icon={<FormOutlined />}>
 					<Link to="/createstream"> Create Stream </Link>
 				</Menu.Item>
-				
+
 			</Menu>
 			<Row
 				style={{ position: "absolute", bottom: 40, width: "100%" }}

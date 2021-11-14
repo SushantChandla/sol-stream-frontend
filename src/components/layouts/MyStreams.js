@@ -83,8 +83,8 @@ const MyStreams = () => {
 
 	return (
 		<div style={{ height: "100%" }}>
-			<Col className="site-page-header">
-				<h3 className="page-heading">
+			<Col className="site-page-header" >
+				<h3 className="page-heading" >
 					Stream History
 					<br />
 					<div className="page-sub-heading">

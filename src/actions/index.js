@@ -12,23 +12,7 @@ const programAccount = new PublicKey(
 );
 
 export const connectWallet = () => {
-	return async (dispatch, getState) => {
-		try {
-			const { walletConfig } = getState();
-			walletConfig.wallet.on("connect", (publicKey) =>
-				console.log("Connected to " + publicKey.toBase58())
-			);
-			if (!walletConfig.wallet.connected) {
-				await walletConfig.wallet.connect();
-				dispatch({
-					type: "WALLET_CONNECT",
-					payload: { wallet: walletConfig.wallet },
-				});
-			}
-		} catch (e) {
-			console.log(e);
-		}
-	};
+	
 };
 
 export const disconnectWallet = () => {

@@ -13,7 +13,7 @@ import App from './components/App';
 ReactDOM.render(
     <Provider store={createStore(reducers, applyMiddleware(thunk))}>
         <BrowserRouter>
-            <App/>
+            <App />
         </BrowserRouter>
     </Provider>,
     document.querySelector("#root")

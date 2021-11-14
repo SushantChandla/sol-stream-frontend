@@ -3,19 +3,18 @@ import { Layout, Row, Col, Button } from "antd";
 import {
 	MenuFoldOutlined,
 	MenuUnfoldOutlined,
-	LoginOutlined,
-	LogoutOutlined,
 } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
 import { connectWallet, disconnectWallet } from "../../actions";
 import { isMobile } from "react-device-detect";
+import { WalletMultiButton } from "@solana/wallet-adapter-ant-design";
 
 const { Header } = Layout;
 
 const HeaderSection = (props) => {
 	const toggle = () => {
-		if(!isMobile){
+		if (!isMobile) {
 			props.setCollapsed(!props.collapsed);
 		}
 	};
@@ -53,22 +52,7 @@ const HeaderSection = (props) => {
 					</Col>
 				</Row>
 				<Col style={{ marginRight: "15px" }}>
-					<Button
-						type="primary"
-						icon={
-							selector.wallet.connected ? (
-								<LogoutOutlined />
-							) : (
-								<LoginOutlined />
-							)
-						}
-						onClick={handleOnClick}
-						shape="round"
-					>
-						{selector.wallet.connected
-							? "Disconnect Wallet"
-							: "Connect Wallet"}
-					</Button>
+					<WalletMultiButton />
 				</Col>
 			</Row>
 		</Header>
