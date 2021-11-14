@@ -1,3 +1,4 @@
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
 	SystemProgram,
 	Transaction,
@@ -11,24 +12,7 @@ const programAccount = new PublicKey(
 	"GoKSo1QVBx1jqeA15xSx6vJm3tYBM1586qp58VxXJayZ"
 );
 
-export const connectWallet = () => {
-	
-};
 
-export const disconnectWallet = () => {
-	return async (dispatch, getState) => {
-		try {
-			const { walletConfig } = getState();
-			await walletConfig.wallet.disconnect();
-			dispatch({
-				type: "WALLET_DISCONNECT",
-				payload: { wallet: walletConfig.wallet },
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	};
-};
 
 export const withdraw = (streamId, amountToWithdraw) => {
 	return async (dispatch, getState) => {
@@ -69,11 +53,11 @@ export const withdraw = (streamId, amountToWithdraw) => {
 			);
 			// console.log("end sendMessage", result);
 			dispatch(getAllStreams());
-			dispatch({type:"WITHDRAW_SUCCESS"});
+			dispatch({ type: "WITHDRAW_SUCCESS" });
 		} catch (e) {
 			console.log(e);
 			dispatch(getAllStreams());
-			dispatch({type:"WITHDRAW_FAILED"});
+			dispatch({ type: "WITHDRAW_FAILED" });
 		}
 	};
 };
@@ -122,11 +106,11 @@ export const cancelStream = (streamId, rewardForReceiver, receiverAddress) => {
 				"CloseStream"
 			);
 			dispatch(getAllStreams());
-			dispatch({type:"CANCEL_SUCCESS"});
+			dispatch({ type: "CANCEL_SUCCESS" });
 			console.log("end sendMessage", result);
 		} catch (e) {
 			dispatch(getAllStreams());
-			dispatch({type:"CANCEL_FAILED"});
+			dispatch({ type: "CANCEL_FAILED" });
 			console.log(e);
 		}
 	};
@@ -272,7 +256,6 @@ async function signAndSendTransaction(wallet, transaction, connection) {
 export const getAllStreams = () => {
 	return async (dispatch, getState) => {
 		try {
-			// await dispatch(connectWallet());
 			const { walletConfig } = getState();
 			let response = await axios.get(
 				`/getallstream/${walletConfig.wallet.publicKey.toString()}`
@@ -287,7 +270,7 @@ export const getAllStreams = () => {
 			console.log(e);
 			dispatch({
 				type: "DATA_NOT_RECEIVED",
-				result: {data:null},
+				result: { data: null },
 			})
 		}
 	};
