@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { withdraw } from "../../../actions";
 import { useSelector } from "react-redux";
 import { isMobile } from "react-device-detect";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const { Meta } = Card;
 
@@ -53,7 +54,9 @@ const TableContent = ({
 	const [loading, setLoading] = useState(false);
 	const [withdrawAmount, setWithdrawAmount] = useState(0);
 	const selector = useSelector((state) => state.withdrawStatus);
+	const wallet=useWallet();
 
+	
 	useEffect(() => {
 		const interval = setInterval(() => {
 			let timeNow = new Date().getTime();
@@ -219,7 +222,7 @@ const TableContent = ({
 					shape="round"
 					loading={loading}
 					onClick={() => {
-						dispatch(withdraw(streamID, withdrawAmount));
+						dispatch(withdraw(streamID, withdrawAmount,wallet));
 						setLoading(true);
 					}}
 				>

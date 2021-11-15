@@ -69,7 +69,6 @@ const CreateStream = (props) => {
 		setToken(undefined);
 		setLoader(false);
 	}, [selector]);
-
 	const handleOnClick = (e) => {
 		e.preventDefault();
 
@@ -81,6 +80,7 @@ const CreateStream = (props) => {
 					startTime: range[0].unix(),
 					endTime: range[1].unix(),
 					amountSpeed: amount,
+					wallet: wallet
 				})
 			);
 		}
