@@ -5,6 +5,7 @@ import TableContent from "../ui/receiving/table-item-content";
 import TableItem from "../ui/receiving/table-item";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllStreams } from "../../actions";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const getStatus = (stream) => {
 	if (stream.start_time > new Date().getTime() / 1000) {
@@ -24,10 +25,13 @@ const Stream = () => {
 	const [skeleton, setSkeleton] = useState(false);
 	const dispatch = useDispatch();
 
+	const wallet = useWallet();
+
 	useEffect(() => {
 		setSkeleton(true);
-		dispatch(getAllStreams());
-	}, [walletSelector]);
+		if (wallet.publicKey != undefined) dispatch(getAllStreams(wallet.publicKey.toString()));
+	}, [wallet]);
+
 
 	useEffect(() => {
 		setSkeleton(false);
@@ -101,7 +105,10 @@ const Stream = () => {
 				}}
 			>
 				{skeleton ? (
-					<Skeleton active />
+					<div>
+						<h1 style={{ color: "white" }}>Connect wallet</h1>
+						<Skeleton active />
+					</div>
 				) : (
 					<>
 						<Row
@@ -123,7 +130,9 @@ const Stream = () => {
 									borderRadius: "10px",
 								}}
 								onClick={() => {
-									dispatch(getAllStreams());
+									if (wallet.publicKey != null) {
+										dispatch(getAllStreams(wallet.publicKey.toString()));
+									}
 									setSkeleton(true);
 								}}
 							>

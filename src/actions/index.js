@@ -13,12 +13,12 @@ const programAccount = new PublicKey(
 );
 
 
-export const withdraw = (streamId, amountToWithdraw) => {
+export const withdraw = (streamId, amountToWithdraw,wallet) => {
 	return async (dispatch, getState) => {
 	};
 };
 
-export const cancelStream = (streamId, receiverAddress) => {
+export const cancelStream = (streamId, receiverAddress,wallet) => {
 	return async (dispatch, getState) => {
 	};
 };
@@ -28,13 +28,14 @@ export const createStream = ({
 	startTime,
 	endTime,
 	amountSpeed,
+	wallet
 }) => {
 	return async (dispatch, getState) => {
 	};
 };
 
 
-export const getAllStreams = () => {
+export const getAllStreams = (pubkey) => {
 	return async (dispatch, getState) => {
 		dispatch({
 			type: "DATA_RECEIVED",

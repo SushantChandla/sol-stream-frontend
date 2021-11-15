@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { cancelStream } from "../../../actions";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const { Step } = Steps;
 const { Meta } = Card;
@@ -57,6 +58,8 @@ const TableContent = ({
 		setLoading(false);
 		setDrawer(false);
 	}, [selector]);
+
+	const wallet=useWallet();
 
 	return (
 		<div className="site-drawer-render-in-current-wrapper">
@@ -105,7 +108,7 @@ const TableContent = ({
 									type="primary"
 									shape="round"
 									onClick={() => {
-										dispatch(cancelStream(streamID, receiver));
+										dispatch(cancelStream(streamID, receiver,wallet));
 										setLoading(true);
 									}}
 								>
