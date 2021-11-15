@@ -13,7 +13,6 @@ import { isMobile } from "react-device-detect";
 const Tableitem = ({
 	children,
 	status,
-	earned,
 	token,
 	amount,
 	cardCss,
@@ -34,25 +33,6 @@ const Tableitem = ({
 				}}
 			>
 				<h3 className="item-heading">{status}</h3>
-				<Col>
-					<h4 className="item-sub-heading">Earned</h4>
-					<h3 className="item-heading">
-						{earned}{" "}
-						<Popover
-							title="Reward Token(In Lamports)"
-							content={
-								<div>
-									This is the amount of tokens earned.
-									<br /> The tokens are linked with yield
-									<br />
-									earning strategies.
-								</div>
-							}
-						>
-							<QuestionCircleOutlined />
-						</Popover>
-					</h3>
-				</Col>
 				<Col>
 					<h4 className="item-sub-heading">To</h4>
 					<h3 className="item-heading">

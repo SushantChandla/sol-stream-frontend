@@ -44,9 +44,9 @@ const CreateStream = (props) => {
 	const selector2 = useSelector((state) => state.walletConfig);
 	let wallet = useWallet();
 
-	const connectWalletClick = (e) => {
-		e.preventDefault();
-	};
+	if (wallet.connected && currentStep != 1) {
+		setCurrentStep(1);
+	}
 
 	useEffect(() => {
 		if (wallet.connected) setCurrentStep(1);

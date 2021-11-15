@@ -6,9 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllStreams } from "../../actions";
 
 const getStatus = (stream) => {
-	if (!stream.is_active) {
-		return "Completed";
-	}
 	if (stream.start_time > new Date().getTime() / 1000) {
 		return "Starting soon";
 	}
@@ -72,10 +69,9 @@ const MyStreams = () => {
 					endTime={new Date(stream.end_time * 1000).toUTCString()}
 					withdrawn={stream.lamports_withdrawn}
 					receiver={stream.to}
-					streamed={stream.status}
+					streamed={getStatus(stream)}
 					earned={stream.yeildEarned}
 					streamID={stream.id}
-					statusID={stream.statusID}
 				/>
 			</TableItem>
 		);
