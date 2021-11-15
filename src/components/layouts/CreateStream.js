@@ -48,9 +48,9 @@ const CreateStream = (props) => {
 		setCurrentStep(1);
 	}
 
-	const connectWalletClick = (e) => {
-		e.preventDefault();
-	};
+	if (wallet.connected && currentStep != 1) {
+		setCurrentStep(1);
+	}
 
 	useEffect(() => {
 		if (wallet.connected) setCurrentStep(1);

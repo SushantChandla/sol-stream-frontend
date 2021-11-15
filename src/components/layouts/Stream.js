@@ -7,9 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllStreams } from "../../actions";
 
 const getStatus = (stream) => {
-	if (!stream.is_active) {
-		return "Completed";
-	}
 	if (stream.start_time > new Date().getTime() / 1000) {
 		return "Starting soon";
 	}

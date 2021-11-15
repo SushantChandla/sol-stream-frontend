@@ -70,7 +70,7 @@ const App = () => {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect={true}>
+      <WalletProvider wallets={wallets} autoConnect={false}>
         <WalletModalProvider>
           <Layout>
             <Header collapsed={collapsed} setCollapsed={setCollapsed} />
