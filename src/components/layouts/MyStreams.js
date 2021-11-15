@@ -61,19 +61,19 @@ const MyStreams = () => {
 				status={getStatus(stream)}
 				earned={stream.yeildEarned}
 				token="SOL"
-				receiver={stream.to}
+				receiver={stream.receiver}
 				amount={stream.total_amount}
 				cardCss={cardCssProp(idx)}
-				key={stream.id}
+				key={stream.pda_account}
 			>
 				<TableContent
 					startTime={new Date(stream.start_time * 1000).toUTCString()}
 					endTime={new Date(stream.end_time * 1000).toUTCString()}
 					withdrawn={stream.lamports_withdrawn}
-					receiver={stream.to}
+					receiver={stream.receiver}
 					streamed={getStatus(stream)}
 					earned={stream.yeildEarned}
-					streamID={stream.id}
+					streamID={stream.pda_account}
 				/>
 			</TableItem>
 		);

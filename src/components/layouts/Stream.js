@@ -64,21 +64,21 @@ const Stream = () => {
 				status={getStatus(stream)}
 				earned={stream.yeildEarned}
 				token="SOL"
-				receiver={stream.to}
+				receiver={stream.receiver}
 				amount={stream.total_amount}
 				cardCss={cardCssProp(idx)}
-				key={stream.id}
-				sender={stream.from}
+				key={stream.pda_account}
+				sender={stream.sender}
 			>
 				<TableContent
 					startTime={new Date(stream.start_time * 1000).toUTCString()}
 					endTime={new Date(stream.end_time * 1000).toUTCString()}
 					withdrawn={stream.lamports_withdrawn}
-					receiver={stream.to}
-					streamID={stream.id}
+					receiver={stream.receiver}
+					streamID={stream.pda_account}
 					amount={stream.total_amount}
 					rate={stream.amount_second}
-					sender={stream.from}
+					sender={stream.sender}
 					sTime={stream.start_time}
 					eTime={stream.end_time}
 				/>
