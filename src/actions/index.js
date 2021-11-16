@@ -7,10 +7,10 @@ import {
 } from "@solana/web3.js";
 
 import axios from "../config";
-import { serialize, } from 'borsh';
+import { deserialize, serialize, } from 'borsh';
 
 const programAccount = new PublicKey(
-	"GoKSo1QVBx1jqeA15xSx6vJm3tYBM1586qp58VxXJayZ"
+	"DcGPfiGbubEKh1EnQ86EdMvitjhrUo8fGSgvqtFG4A9t"
 );
 
 const adminAddress = new PublicKey("DGqXoguiJnAy8ExJe9NuZpWrnQMCV14SdEdiMEdCfpmB");
@@ -106,8 +106,8 @@ class CreateStreamInput {
 		{
 			kind: 'struct',
 			fields: [
-				['start_time', 'i64'],
-				['end_time', 'i64'],
+				['start_time', 'u64'],
+				['end_time', 'u64'],
 				['receiver', [32]],
 				['lamports_withdrawn', 'u64'],
 				['amount_second', 'u64']]
@@ -122,58 +122,64 @@ export const createStream = ({
 	wallet
 }) => {
 	return async (dispatch, getState) => {
-		// try {
-		const SEED = "abcdef" + Math.random().toString();
-		let newAccount = await PublicKey.createWithSeed(
-			wallet.publicKey,
-			SEED,
-			programAccount
-		);
+		try {
+			const SEED = "abcdef" + Math.random().toString();
+			let newAccount = await PublicKey.createWithSeed(
+				wallet.publicKey,
+				SEED,
+				programAccount
+			);
+			let create_stream_input = new CreateStreamInput({
+				start_time: startTime,
+				end_time: endTime,
+				receiver: new PublicKey(receiverAddress).toBuffer(),
+				lamports_withdrawn: 0,
+				amount_second: amountSpeed,
+			});
 
-		let create_stream_input = new CreateStreamInput({
-			start_time: startTime,
-			end_time: endTime,
-			receiver: new PublicKey(receiverAddress).toBuffer(),
-			lamports_withdrawn: 0,
-			amountSpeed: amountSpeed,
-		});
+			let data = serialize(CreateStreamInput.schema, create_stream_input);
 
-		let data = serialize(CreateStreamInput.schema, create_stream_input);
+			let data_to_send = new Uint8Array([1, ...data]);
 
-		let data_to_send = new Uint8Array([1, ...data]);
+			let rent = await connection.getMinimumBalanceForRentExemption(96);
 
-		let rent = await connection.getMinimumBalanceForRentExemption(96);
+			const createProgramAccount = SystemProgram.createAccountWithSeed({
+				fromPubkey: wallet.publicKey,
+				basePubkey: wallet.publicKey,
+				seed: SEED,
+				newAccountPubkey: newAccount,
+				lamports: ((endTime - startTime) * amountSpeed) + 30000000 + rent,
+				space: 96,
+				programId: programAccount,
+			});
 
-		const createProgramAccount = SystemProgram.createAccountWithSeed({
-			fromPubkey: wallet.publicKey,
-			basePubkey: wallet.publicKey,
-			seed: SEED,
-			newAccountPubkey: newAccount,
-			lamports: (endTime - startTime * amountSpeed) + 300000000 + rent,
-			space: data.length,
-			programId: programAccount,
-		});
+			const instructionTOOurProgram = new TransactionInstruction({
+				keys: [
+					{ pubkey: newAccount, isSigner: false, isWritable: true },
+					{ pubkey: wallet.publicKey, isSigner: true, },
+					{ pubkey: receiverAddress, isSigner: false, },
+					{ pubkey: adminAddress, isSigner: false, }
+				],
+				programId: programAccount,
+				data: data_to_send
+			});
+			const trans = await setPayerAndBlockhashTransaction(
+				[createProgramAccount, instructionTOOurProgram], wallet
+			);
 
-		const instructionTOOurProgram = new TransactionInstruction({
-			keys: [
-				{ pubkey: newAccount, isSigner: false, isWritable: true },
-				{ pubkey: wallet.publicKey, isSigner: true, },
-				{ pubkey: receiverAddress, isSigner: false, },
-				{ pubkey: adminAddress, isSigner: false, }
-			],
-			programId: programAccount,
-			data: data_to_send
-		});
-		const trans = await setPayerAndBlockhashTransaction(
-			[createProgramAccount, instructionTOOurProgram], wallet
-		);
-
-		let signature = await wallet.sendTransaction(trans, connection);
-		const result = await connection.confirmTransaction(signature);
-		console.log("end sendMessage", result);
-		// } catch (e) {
-		// 	alert(e);
-		// }
+			let signature = await wallet.sendTransaction(trans, connection);
+			const result = await connection.confirmTransaction(signature);
+			console.log("end sendMessage", result);
+			dispatch({
+				type: "CREATE_RESPONSE",
+				result: true,
+				id: newAccount.toString(),
+			});
+		} catch (e) {
+			alert(e);
+			dispatch({ type: "CREATE_FAILED", result: false });
+		}
+		dispatch(getAllStreams());
 	};
 };
 
@@ -194,8 +200,9 @@ export const getAllStreams = (pubkey) => {
 	return async (dispatch, getState) => {
 		try {
 			let response = await axios.get(
-				`/${pubkey}}`
+				`/${pubkey}`
 			);
+			console.log(response);
 			if (response.status !== 200)
 				throw new Error("Something went wrong");
 			dispatch({

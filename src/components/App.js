@@ -42,7 +42,7 @@ const openNotificationFail = () => {
     message: "The DApp is not Optimised for Mobile",
     description:
       "The DApp is still under construction! We recommend using it on desktop.",
-  });
+  }); 
 };
 
 
