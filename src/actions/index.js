@@ -61,9 +61,10 @@ export const withdraw = (streamId, amountToWithdraw, wallet) => {
 			let signature = await wallet.sendTransaction(trans, connection);
 			const result = await connection.confirmTransaction(signature);
 			console.log("end sendMessage", result);
-
+			dispatch({ type: "WITHDRAW_SUCCESS" });
 		} catch (e) {
 			alert(e);
+			dispatch({ type: "WITHDRAW_FAILED" });
 		}
 	};
 };
@@ -74,11 +75,11 @@ export const cancelStream = (streamId, receiverAddress, wallet) => {
 			const instructionTOOurProgram = new TransactionInstruction({
 				keys: [
 					{ pubkey: streamId, isSigner: false, isWritable: true },
-					{ pubkey: wallet.publicKey, isSigner: true, },
-					{ pubkey: receiverAddress, isSigner: false }
+					{ pubkey: wallet.publicKey, isSigner: true, isWritable:true },
+					{ pubkey: receiverAddress, isSigner: false, isWritable:true}
 				],
 				programId: programAccount,
-				data: Uint8Array([3])
+				data: new Uint8Array([3])
 			});
 
 			const trans = await setPayerAndBlockhashTransaction(
@@ -88,8 +89,10 @@ export const cancelStream = (streamId, receiverAddress, wallet) => {
 			let signature = await wallet.sendTransaction(trans, connection);
 			const result = await connection.confirmTransaction(signature);
 			console.log("end sendMessage", result);
+			dispatch({ type: "CANCEL_SUCCESS" });
 		} catch (e) {
 			alert(e);
+			dispatch({ type: "CANCEL_FAILED" });
 		}
 	};
 };
@@ -158,7 +161,7 @@ export const createStream = ({
 					{ pubkey: newAccount, isSigner: false, isWritable: true },
 					{ pubkey: wallet.publicKey, isSigner: true, },
 					{ pubkey: receiverAddress, isSigner: false, },
-					{ pubkey: adminAddress, isSigner: false, }
+					{ pubkey: adminAddress, isSigner: false, isWritable: true }
 				],
 				programId: programAccount,
 				data: data_to_send
@@ -170,6 +173,7 @@ export const createStream = ({
 			let signature = await wallet.sendTransaction(trans, connection);
 			const result = await connection.confirmTransaction(signature);
 			console.log("end sendMessage", result);
+			dispatch(getAllStreams(wallet.publicKey.toString()));
 			dispatch({
 				type: "CREATE_RESPONSE",
 				result: true,
@@ -179,7 +183,6 @@ export const createStream = ({
 			alert(e);
 			dispatch({ type: "CREATE_FAILED", result: false });
 		}
-		dispatch(getAllStreams());
 	};
 };
 
