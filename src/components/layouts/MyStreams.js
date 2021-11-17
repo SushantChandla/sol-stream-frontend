@@ -36,7 +36,6 @@ const MyStreams = () => {
 		if (streamingOnly) {
 			const s = streamsList.filter((stream) => {
 				if (
-					stream.is_active &&
 					stream.start_time < new Date().getTime() / 1000 &&
 					stream.end_time > new Date().getTime() / 1000
 				)
