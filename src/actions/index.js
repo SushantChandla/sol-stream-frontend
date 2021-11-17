@@ -75,8 +75,8 @@ export const closeStream = (streamId, receiverAddress, wallet) => {
 			const instructionTOOurProgram = new TransactionInstruction({
 				keys: [
 					{ pubkey: streamId, isSigner: false, isWritable: true },
-					{ pubkey: wallet.publicKey, isSigner: true, isWritable:true },
-					{ pubkey: receiverAddress, isSigner: false, isWritable:true}
+					{ pubkey: wallet.publicKey, isSigner: true, isWritable: true },
+					{ pubkey: receiverAddress, isSigner: false, isWritable: true }
 				],
 				programId: programAccount,
 				data: new Uint8Array([3])
@@ -91,7 +91,7 @@ export const closeStream = (streamId, receiverAddress, wallet) => {
 			console.log("end sendMessage", result);
 			dispatch({ type: "CANCEL_SUCCESS" });
 		} catch (e) {
-			alert(e);clea
+			alert(e);
 			dispatch({ type: "CANCEL_FAILED" });
 		}
 	};
