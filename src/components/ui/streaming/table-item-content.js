@@ -11,7 +11,7 @@ import {
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cancelStream } from "../../../actions";
+import { closeStream } from "../../../actions";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const { Step } = Steps;
@@ -108,7 +108,7 @@ const TableContent = ({
 									type="primary"
 									shape="round"
 									onClick={() => {
-										dispatch(cancelStream(streamID, receiver,wallet));
+										dispatch(closeStream(streamID, receiver,wallet));
 										setLoading(true);
 									}}
 								>

@@ -67,9 +67,9 @@ export const withdraw = (streamId, amountToWithdraw, wallet) => {
 			dispatch({ type: "WITHDRAW_FAILED" });
 		}
 	};
-};
+}
 
-export const cancelStream = (streamId, receiverAddress, wallet) => {
+export const closeStream = (streamId, receiverAddress, wallet) => {
 	return async (dispatch, getState) => {
 		try {
 			const instructionTOOurProgram = new TransactionInstruction({
@@ -91,7 +91,7 @@ export const cancelStream = (streamId, receiverAddress, wallet) => {
 			console.log("end sendMessage", result);
 			dispatch({ type: "CANCEL_SUCCESS" });
 		} catch (e) {
-			alert(e);
+			alert(e);clea
 			dispatch({ type: "CANCEL_FAILED" });
 		}
 	};
