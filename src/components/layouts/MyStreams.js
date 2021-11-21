@@ -123,9 +123,9 @@ const MyStreams = () => {
 									borderRadius: "10px",
 								}}
 								onClick={() => {
-									if(wallet.publicKey!=null){
+									if (wallet.publicKey != null) {
 										dispatch(getAllStreams(wallet.publicKey.toString()));
-										}
+									}
 									setSkeleton(true);
 								}}
 							>

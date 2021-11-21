@@ -43,8 +43,8 @@ const CreateStream = (props) => {
 
 	const selector2 = useSelector((state) => state.walletConfig);
 	let wallet = useWallet();
-	
-	if (wallet.connected && currentStep ===0) {
+
+	if (wallet.connected && currentStep === 0) {
 		setCurrentStep(1);
 	}
 

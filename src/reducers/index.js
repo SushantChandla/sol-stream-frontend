@@ -42,7 +42,8 @@ const getStreamReducer = (state = { sending: [], receiving: [] }, action) => {
   switch (action.type) {
     case "DATA_RECEIVED":
       // console.log(action);
-      return {...state, 
+      return {
+        ...state,
         sending: action.result.sending,
         receiving: action.result.receiving,
       };
@@ -53,26 +54,26 @@ const getStreamReducer = (state = { sending: [], receiving: [] }, action) => {
   }
 };
 
-const withDrawStatus = (state=false , action) => {
-    switch (action.type) {
-		case "WITHDRAW_SUCCESS":
-		  return true;
-		case "WITHDRAW_FAILED":
-		  return false;
-		default:
-		  return state;
-	  }
+const withDrawStatus = (state = false, action) => {
+  switch (action.type) {
+    case "WITHDRAW_SUCCESS":
+      return true;
+    case "WITHDRAW_FAILED":
+      return false;
+    default:
+      return state;
+  }
 }
 
-const cancelStatus = (state=false , action) => {
-    switch (action.type) {
-		case "CANCEL_SUCCESS":
-		  return true;
-		case "CANCEL_FAILED":
-		  return false;
-		default:
-		  return state;
-	  }
+const cancelStatus = (state = false, action) => {
+  switch (action.type) {
+    case "CANCEL_SUCCESS":
+      return true;
+    case "CANCEL_FAILED":
+      return false;
+    default:
+      return state;
+  }
 }
 
 
